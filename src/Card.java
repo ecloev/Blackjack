@@ -1,9 +1,11 @@
 public class Card {
     int value;
-    char suite;
+    char suit;
+    int count;
 
-    public Card (int value, char suite) {
+    public Card (int value, char suit, int count) {
         this.value = value;
-        this.suite = suite;
+        this.suit = suit;
+        this.count = count;
     }
 }
