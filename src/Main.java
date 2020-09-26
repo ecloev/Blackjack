@@ -5,7 +5,7 @@ public class Main {
     ArrayList<Card> possibleCards = new ArrayList<Card>();
     ArrayList<Card> deck = new ArrayList<Card>();
     static int money = 50;
-    static int wager = 0;
+    static int wager;
 
     public static void main(String[] args) throws InterruptedException { // Execution begins
         Scanner scanner = new Scanner(System.in); // Instantiate scanner object
@@ -17,8 +17,9 @@ public class Main {
         Thread.sleep(3000);
 
         System.out.printf("You currently have $%d.\n", money);
-        System.out.printf("How much would you like to wager:\n");
-
+        System.out.printf("Enter a wager:\n");
+        wager = scanner.nextInt();
+        scanner.nextLine();
 
 
 
