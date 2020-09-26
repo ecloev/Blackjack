@@ -11,13 +11,10 @@ public class Main {
         String playerName = scanner.nextLine();
         Game game = new Game(playerName);
         System.out.printf("%s, loading your game.......\n", game.getPlayerName());
+        game.deck = Game.shuffle(game.deck);
         Thread.sleep(3000);
 
-        System.out.println(game.deck);
 
-        game.deck = Game.shuffle(game.deck);
-
-        System.out.println(game.deck);
 
     }
 }

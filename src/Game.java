@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class Game {
@@ -133,20 +134,9 @@ public class Game {
     }
 
     public static ArrayList<Card> shuffle(ArrayList<Card> currDeck) {
-        var newDeck = new ArrayList<Card>();
-        int length = currDeck.size();
-        Random rand = new Random();
-        int counter = 0;
-
-        while (length != 0) {
-            int index = rand.nextInt(length - 1);
-            newDeck.set(counter, currDeck.get(index));
-            currDeck.remove(currDeck.get(index));
-            length --;
-            counter ++;
-        }
-
-
+        ArrayList<Card> newDeck = new ArrayList<>(currDeck);
+        Collections.shuffle(newDeck);
         return newDeck;
+        }
     }
-}
+
