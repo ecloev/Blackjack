@@ -15,5 +15,9 @@ public class Main {
 
         System.out.println(game.deck);
 
+        game.deck = Game.shuffle(game.deck);
+
+        System.out.println(game.deck);
+
     }
 }
