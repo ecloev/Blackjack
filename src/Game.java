@@ -8,7 +8,7 @@ public class Game {
     public Game(String playerName) {
         this.playerName = playerName;
         
-        // Cards are organized Ace through King and by Suit
+        // Cards are organized Ace through King by Suit
         
         // Spades
 
