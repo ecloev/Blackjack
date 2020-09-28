@@ -6,6 +6,11 @@ public class Main {
     ArrayList<Card> deck = new ArrayList<Card>();
     static int money = 50;
     static int wager;
+    
+    static int playerTotal;
+    static int dealerTotal;
+    
+    
 
     public static void main(String[] args) throws InterruptedException { // Execution begins
         Scanner scanner = new Scanner(System.in); // Instantiate scanner object
@@ -20,6 +25,32 @@ public class Main {
         System.out.printf("Enter a wager:\n");
         wager = scanner.nextInt();
         scanner.nextLine();
+
+        System.out.printf("You have wagered $%d\n", wager);
+        System.out.printf("Dealing cards...\n\n");
+        Thread.sleep(2000);
+
+        Card playerCard1 = game.drawCard();
+        Card playerCard2 = game.drawCard();
+        Card dealerCard1 = game.drawCard();
+        Card dealerCard2 = game.drawCard(); // This is the dealer's hidden card
+
+        // System.out.println("Cards left in deck: "+game.deck.size()); // For testing purposes
+
+        playerTotal = playerCard1.value + playerCard2.value; // Adds the value Integers of the player cards
+
+        // Runs the get.Value and get.Suit methods. Both return strings
+        System.out.printf("You have: " + playerCard1.getValue() + playerCard1.getSuit()+" and "
+                + playerCard2.getValue() + playerCard2.getSuit()+ "\n");
+        System.out.printf("Your total is: %d\n\n" , playerTotal);
+
+
+        System.out.println("The dealer shows: " + dealerCard1.getValue() +dealerCard2.getSuit());
+
+
+
+
+
 
 
 

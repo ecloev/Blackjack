@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 public class Game {
     String playerName;
@@ -128,6 +127,22 @@ public class Game {
         deck.add(card52);
 
     }
+    public Card drawCard() {
+        Card newCard = deck.get(0); // Takes the first card in the deck and copies its info to newCard
+        deck.remove(0); // Removes this card from the deck (the next card will take its place at index 0)
+
+        // Gives number cards a "valueString" (of their actual value)
+        if (newCard.value > 0) {
+            newCard.valueString = Integer.toString(newCard.value);
+        }
+
+        // Reverse of above: gives non-number cards a Integer value of 10, except for Aces
+        if (newCard.stringOrInt == 1 && !newCard.valueString.equals("A")) {
+            newCard.value = 10;
+        }
+        return newCard; // Returns the top card we just drew
+
+    }
 
     public String getPlayerName() {
         return playerName;
@@ -138,5 +153,12 @@ public class Game {
         Collections.shuffle(newDeck);
         return newDeck;
         }
-    }
+
+
+
+
+
+}
+
+
 
