@@ -128,7 +128,7 @@ public class Game {
 
     }
     public Card drawCard() {
-        Card newCard = deck.get(0); // Takes the first card in the deck and copies its info to newCard
+        Card newCard = deck.get(0); // Takes the first card in the deck
         deck.remove(0); // Removes this card from the deck (the next card will take its place at index 0)
 
         // Gives number cards a "valueString" (of their actual value)
@@ -140,6 +140,12 @@ public class Game {
         if (newCard.stringOrInt == 1 && !newCard.valueString.equals("A")) {
             newCard.value = 10;
         }
+
+        // Gives Ace default value of 11
+        if(newCard.getValue().equals("A")) {
+            newCard.value = 11;
+        }
+
         return newCard; // Returns the top card we just drew
 
     }
