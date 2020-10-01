@@ -20,6 +20,8 @@ public class Main {
     static ArrayList<Card> dealerHand = new ArrayList<>();
     static String hitOrStay = "";
     static boolean isRoundOver;
+    static boolean playerHasAce;
+    static boolean dealerHasAce;
     
     
 
@@ -57,6 +59,15 @@ public class Main {
 
             dealerHand.add(dealerCard1); // Populating dealer's hand
             dealerHand.add(dealerCard2);
+
+
+            if (playerCard1.getValue().equals("A") || playerCard2.getValue().equals("A")){
+                playerHasAce = true;
+            }
+
+            if (dealerCard1.getValue().equals("A") || dealerCard2.getValue().equals("A")){
+                dealerHasAce = true;
+            }
 
 
             for (Card card : playerHand) {
@@ -100,10 +111,26 @@ public class Main {
                         while (dealerTotal < 17) {
                             System.out.println("Dealer must hit.\n");
                             Card newCard = game.drawCard();
+
+                            if (newCard.getValue().equals("A")){
+                                dealerHasAce = true;
+                            }
+
                             System.out.printf("The dealer is dealt: %s%s\n", newCard.getValue(), newCard.getSuit());
+                            dealerHand.add(newCard);
                             dealerTotal += newCard.value;
+
+
+                            if (dealerTotal > 21 && dealerHasAce) {
+                                dealerTotal -= 10; // Effectively turns Ace value from 11 to 1
+                                dealerHasAce = false; // Stops from happening again (for same ace)
+                            }
+
+
                         }
                         System.out.printf("The dealer now has a hand total of %d.\n", dealerTotal);
+
+                        // Game outcomes
                         if (dealerTotal > 21) {
                             System.out.println("The dealer busted. You doubled your wager.");
                             money += wager;
@@ -127,7 +154,18 @@ public class Main {
                     case "hit" -> {
                         Card newCard = game.drawCard();
                         System.out.printf("The player is dealt: %s%s\n", newCard.getValue(), newCard.getSuit());
+                        playerHand.add(newCard);
                         playerTotal += newCard.value;
+
+                        if (newCard.getValue().equals("A")){
+                            playerHasAce = true;
+                        }
+
+                        if (playerTotal > 21 && playerHasAce) {
+                            playerTotal -= 10; // Effectively turns Ace value from 11 to 1
+                            playerHasAce = false; // Stops from happening again (for same ace)
+                        }
+
                         if (playerTotal > 21) {
                             System.out.println("You bust! You lose your wager.");
                             money -= wager;
