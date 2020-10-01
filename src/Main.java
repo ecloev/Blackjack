@@ -108,8 +108,10 @@ public class Main {
                         System.out.printf("You have chosen to stay with a hand total of: %d\n", playerTotal);
                         System.out.println("The dealer flips over: " + dealerCard2.getValue() + dealerCard2.getSuit());
                         System.out.printf("The dealer's total is: %d\n", dealerTotal);
+                        Thread.sleep(1500);
                         while (dealerTotal < 17) {
                             System.out.println("Dealer must hit.\n");
+                            Thread.sleep(1500);
                             Card newCard = game.drawCard();
 
                             if (newCard.getValue().equals("A")){
@@ -117,6 +119,7 @@ public class Main {
                             }
 
                             System.out.printf("The dealer is dealt: %s%s\n", newCard.getValue(), newCard.getSuit());
+                            Thread.sleep(1500);
                             dealerHand.add(newCard);
                             dealerTotal += newCard.value;
 
@@ -129,24 +132,30 @@ public class Main {
 
                         }
                         System.out.printf("The dealer now has a hand total of %d.\n", dealerTotal);
+                        Thread.sleep(1500);
 
                         // Game outcomes
                         if (dealerTotal > 21) {
                             System.out.println("The dealer busted. You doubled your wager.");
+                            Thread.sleep(1500);
                             money += wager;
                             isRoundOver = true;
                         }
                         if (dealerTotal < playerTotal) {
                             System.out.println("You win! You doubled your wager.");
+                            Thread.sleep(1500);
                             money += wager;
                             isRoundOver = true;
                         }
                         if (dealerTotal == playerTotal) {
                             System.out.println("Push! You receive your wager back.");
+                            Thread.sleep(1500);
+                            Thread.sleep(1500);
                             isRoundOver = true;
                         }
                         if (dealerTotal > playerTotal && dealerTotal <= 21) {
                             System.out.println("You lose! The dealer takes your wager.");
+                            Thread.sleep(1500);
                             money -= wager;
                             isRoundOver = true;
                         }
@@ -154,6 +163,7 @@ public class Main {
                     case "hit" -> {
                         Card newCard = game.drawCard();
                         System.out.printf("The player is dealt: %s%s\n", newCard.getValue(), newCard.getSuit());
+                        Thread.sleep(1000);
                         playerHand.add(newCard);
                         playerTotal += newCard.value;
 
@@ -168,11 +178,12 @@ public class Main {
 
                         if (playerTotal > 21) {
                             System.out.println("You bust! You lose your wager.");
+                            Thread.sleep(1500);
                             money -= wager;
                             isRoundOver = true; // End round if player busts
                             break;
                         }
-                        System.out.printf("Your hand's total is now %d.", playerTotal);
+                        System.out.printf("Your hand's total is now %d.\n", playerTotal);
                     }
                 }
             }
