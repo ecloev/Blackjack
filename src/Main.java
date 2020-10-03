@@ -46,6 +46,10 @@ public class Main {
             wager = scanner.nextInt();
             scanner.nextLine();
 
+            if (game.deck.size() == 0) {
+                game.populateDeck();
+            }
+
             System.out.printf("You have wagered $%d.\n", wager);
             System.out.print("Dealing cards...\n\n");
 
@@ -112,6 +116,19 @@ public class Main {
                         while (dealerTotal < 17) {
                             System.out.println("Dealer must hit.\n");
                             Thread.sleep(1500);
+
+                            if (game.deck.size() == 0) {
+                                game.populateDeck();
+                            }
+
+                            if (game.deck.size() == 0) {
+                                game.populateDeck();
+                            }
+
+                            if (game.deck.size() == 0) {
+                                game.populateDeck();
+                            }
+
                             Card newCard = game.drawCard();
 
                             if (newCard.getValue().equals("A")){
@@ -161,6 +178,11 @@ public class Main {
                         }
                     }
                     case "hit" -> {
+
+                        if (game.deck.size() == 0) {
+                            game.populateDeck();
+                        }
+
                         Card newCard = game.drawCard();
                         System.out.printf("The player is dealt: %s%s\n", newCard.getValue(), newCard.getSuit());
                         Thread.sleep(1000);

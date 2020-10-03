@@ -7,9 +7,39 @@ public class Game {
 
     public Game(String playerName) {
         this.playerName = playerName;
-        
+        populateDeck();
+
+    }
+    public Card drawCard() {
+        Card newCard = deck.get(0); // Takes the first card in the deck
+        deck.remove(0); // Removes this card from the deck (the next card will take its place at index 0)
+
+        // Gives number cards a "valueString" (of their actual value)
+        if (newCard.value > 0) {
+            newCard.valueString = Integer.toString(newCard.value);
+        }
+
+        // Reverse of above: gives non-number cards a Integer value of 10, except for Aces
+        if (newCard.stringOrInt == 1 && !newCard.valueString.equals("A")) {
+            newCard.value = 10;
+        }
+
+        // Gives Ace default value of 11
+        if(newCard.getValue().equals("A")) {
+            newCard.value = 11;
+        }
+
+        return newCard; // Returns the top card we just drew
+
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void populateDeck() {
         // Cards are organized Ace through King by Suit
-        
+
         // Spades
 
         Card card1 = new Card("A", "s");
@@ -96,7 +126,7 @@ public class Game {
         deck.add(card38);
         Card card39 = new Card("K", "h");
         deck.add(card39);
-        
+
         // Diamonds
 
         Card card40 = new Card("A", "d");
@@ -125,33 +155,6 @@ public class Game {
         deck.add(card51);
         Card card52 = new Card("K", "d");
         deck.add(card52);
-
-    }
-    public Card drawCard() {
-        Card newCard = deck.get(0); // Takes the first card in the deck
-        deck.remove(0); // Removes this card from the deck (the next card will take its place at index 0)
-
-        // Gives number cards a "valueString" (of their actual value)
-        if (newCard.value > 0) {
-            newCard.valueString = Integer.toString(newCard.value);
-        }
-
-        // Reverse of above: gives non-number cards a Integer value of 10, except for Aces
-        if (newCard.stringOrInt == 1 && !newCard.valueString.equals("A")) {
-            newCard.value = 10;
-        }
-
-        // Gives Ace default value of 11
-        if(newCard.getValue().equals("A")) {
-            newCard.value = 11;
-        }
-
-        return newCard; // Returns the top card we just drew
-
-    }
-
-    public String getPlayerName() {
-        return playerName;
     }
 
     public static ArrayList<Card> shuffle(ArrayList<Card> currDeck) {
